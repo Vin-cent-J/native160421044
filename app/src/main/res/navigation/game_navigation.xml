@@ -25,7 +25,7 @@
             android:name="player_name"
             app:argType="string" />
         <action
-            android:id="@+id/action_gameFragment_to_gameoverFragment"
+            android:id="@+id/actionGameoverFragment"
             app:destination="@id/gameoverFragment" />
     </fragment>
     <fragment

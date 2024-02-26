@@ -19,6 +19,12 @@ class GameoverFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        if(arguments != null){
+            val score = GameoverFragmentArgs.fromBundle(requireArguments()).score
+            bind.txtScore.text = "Your score is $score"
+        }
+
         bind.btnBack.setOnClickListener {
             val action = GameoverFragmentDirections.actionMainFragment()
             Navigation.findNavController(it).navigate(action)
