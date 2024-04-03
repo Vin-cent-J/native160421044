@@ -10,6 +10,7 @@ import android.widget.ListView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.normal.studentapp.R
 import com.normal.studentapp.databinding.FragmentStudentListBinding
@@ -46,7 +47,6 @@ class StudentListFragment : Fragment() {
             viewModel.refresh()
             bind.refreshLayout.isRefreshing = false
         }
-
 
     }
 

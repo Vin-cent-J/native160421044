@@ -1,13 +1,15 @@
 package com.normal.studentapp.view
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
-import com.normal.studentapp.databinding.FragmentStudentListBinding
 import com.normal.studentapp.databinding.StudentListItemBinding
 import com.normal.studentapp.model.Student
+import com.squareup.picasso.Callback
+import com.squareup.picasso.Picasso
 
 class StudentListAdapter(val studentList:ArrayList<Student>):RecyclerView.Adapter<StudentListAdapter.StudentViewHolder>() {
     class StudentViewHolder(var binding: StudentListItemBinding) : RecyclerView.ViewHolder(binding.root)
@@ -25,10 +27,26 @@ class StudentListAdapter(val studentList:ArrayList<Student>):RecyclerView.Adapte
         with(holder.binding){
             txtId.text= studentList[position].id
             txtName.text= studentList[position].name
+
             btnDetail.setOnClickListener {
-                val action = StudentListFragmentDirections.ActionDetailFragment()
+                val id = studentList[position].id.toString()
+                val action = StudentListFragmentDirections.ActionDetailFragment(id)
                 Navigation.findNavController(it).navigate(action)
             }
+
+            val picasso = Picasso.Builder(holder.itemView.context)
+            picasso.listener{picasso, uri, exception -> exception.printStackTrace()}
+            picasso.build().load(studentList[position].url).into(imgStudent, object:Callback{
+                override fun onSuccess() {
+                    holder.binding.progressImg.visibility = View.INVISIBLE
+                    holder.binding.imgStudent.visibility = View.VISIBLE
+                }
+
+                override fun onError(e: Exception?) {
+                    Log.e("picasso_error", e.toString())
+                }
+
+            })
         }
     }
 
@@ -37,4 +55,5 @@ class StudentListAdapter(val studentList:ArrayList<Student>):RecyclerView.Adapte
         studentList.addAll(newStudentList)
         notifyDataSetChanged()
     }
+
 }
