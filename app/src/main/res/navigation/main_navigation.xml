@@ -11,16 +11,17 @@
         android:label="fragment_student_list"
         tools:layout="@layout/fragment_student_list" >
         <action
-            android:id="@+id/ActionDetailFragment"
-            app:destination="@id/StudentDetailFragment" />
+            android:id="@+id/action_StudentListFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
     </fragment>
     <fragment
-        android:id="@+id/StudentDetailFragment"
-        android:name="com.normal.studentapp.view.StudentDetailFragment"
-        android:label="fragment_student_detail"
-        tools:layout="@layout/fragment_student_detail" >
+        android:id="@+id/detailFragment"
+        android:name="com.normal.studentapp.view.DetailFragment"
+        android:label="fragment_detail"
+        tools:layout="@layout/fragment_detail" >
         <argument
             android:name="studentid"
-            app:argType="string" />
+            app:argType="integer"
+            android:defaultValue="1" />
     </fragment>
 </navigation>

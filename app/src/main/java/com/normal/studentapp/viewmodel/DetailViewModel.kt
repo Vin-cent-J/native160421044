@@ -4,7 +4,6 @@ import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.StringRequest
@@ -20,7 +19,7 @@ class DetailViewModel(application: Application): AndroidViewModel(application) {
     val TAG = "volleyTag2"
     private var queue: RequestQueue? = null
 
-    fun fetch(id: String) {
+    fun fetch(id: Number) {
         queue = Volley.newRequestQueue(getApplication())
         val url = "http://adv.jitusolution.com/student.php?id=${id}"
 

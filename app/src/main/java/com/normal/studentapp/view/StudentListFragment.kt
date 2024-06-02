@@ -1,10 +1,12 @@
 package com.normal.studentapp.view
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Adapter
 import android.widget.LinearLayout
 import android.widget.ListView
 import androidx.lifecycle.Observer
@@ -20,7 +22,7 @@ import com.normal.studentapp.viewmodel.ListViewModel
 class StudentListFragment : Fragment() {
     private lateinit var bind: FragmentStudentListBinding
     private lateinit var viewModel: ListViewModel
-    private val studentListAdapter = StudentListAdapter(ArrayList())
+    private lateinit var studentListAdapter: StudentListAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,6 +34,7 @@ class StudentListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        studentListAdapter = StudentListAdapter(ArrayList())
         viewModel = ViewModelProvider(this).get(ListViewModel::class.java)
         viewModel.refresh()
 
